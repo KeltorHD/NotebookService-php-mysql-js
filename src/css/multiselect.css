@@ -1,0 +1,107 @@
+.checkselect {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+    margin-left: 2px;
+}
+
+.checkselect *{
+    color: white;
+
+    font-size: 15px;
+    font-family: Roboto-Medium;
+}
+
+.checkselect-control {
+	position: relative;
+	padding: 0 !important;
+}		
+.checkselect-control select {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	margin: 0;
+	padding-left: 5px;
+	height: 30px;
+}
+.checkselect-over {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0; 			
+	cursor: pointer;
+}
+
+.form-control:focus-visible{
+    outline: none;
+}
+
+.form-control{
+    background-color: #2c3338;
+    border: 1px solid #2c3338;
+}
+
+.form-control > option{
+    color: white;
+}
+
+.checkselect-popup {
+	display: none;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: auto;
+	max-height: 200px;
+	position: absolute;
+	top: calc(100% + 5px);
+	left: 0px; 
+	border-top: none;
+	background: #2c3338;
+	overflow: auto;
+	user-select: none;
+    border: 1px solid white;
+}	
+.checkselect label {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 4px 6px 4px 25px;
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 1.1;
+	cursor: pointer;
+}			
+.checkselect-popup input {
+	position: absolute;
+	top: 5px; 
+	left: 8px;
+	margin: 0 !important;
+	padding: 0;
+}
+.checkselect-popup label:hover {
+	background: grey;
+	color: white;
+}
+.checkselect-popup fieldset {
+	display: block;
+	margin:  0;
+	padding: 0;
+	border: none;
+}
+.checkselect-popup fieldset input {
+	left: 15px;
+}		
+.checkselect-popup fieldset label {
+	padding-left: 32px;
+}		
+.checkselect-popup legend {
+	display: block;
+	margin: 0;
+	padding: 5px 8px;
+	font-weight: 700;
+	font-size: 1em;
+	line-height: 1.1;
+}

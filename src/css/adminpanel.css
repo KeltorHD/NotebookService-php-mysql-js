@@ -1,0 +1,369 @@
+body{
+    background-color: #1f2123;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 0;
+}
+
+.white_theme{
+    background-color: white;
+}
+
+.white_theme *{
+    color: #2c3338 !important;
+}
+
+.white_theme #burger{
+    filter: invert(46%) sepia(2%) saturate(1332%) hue-rotate(176deg) brightness(87%) contrast(88%) !important;
+}
+
+.white_theme .load_more{
+    background-color: #635c5b !important;
+    color: white !important;
+}
+
+.white_theme th{
+    background-color: #635c5b !important;
+    color: white !important;
+}
+
+.white_theme td{
+    background-color: #f6f7f7 !important;
+}
+
+a:active, /* активная/посещенная ссылка */
+a:hover,  /* при наведении */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.main{
+    width: 75%;
+    padding: 0 15px;
+}
+
+h1{
+    font-size: 56px;
+    font-family: Roboto-Bold;
+    color: white;
+
+    margin: 0 0;
+}
+
+h2{
+    font-size: 18px;
+    font-family: Roboto-Light;
+    color: white;
+    
+    margin: 0 0;
+}
+
+h3{
+    font-size: 18px;
+    font-family: Roboto-Light;
+    color: white;
+    
+    margin: 0 0;
+}
+
+h4{
+    font-size: 16px;
+    font-family: Roboto-Light;
+    color: #8c8f94;
+    
+    margin: 0 0;
+}
+
+.left_icon{
+    font-family: Roboto-Medium;
+    color: white;
+    font-size: 20px;
+    line-height: 72px;
+}
+
+.left_icon::before{
+    content: "";
+    background-image: url("/images/icon.png");
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+
+    position: relative;
+    top: 5px;
+}
+
+.header_nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 55px;
+    align-items: center;
+}
+
+.right_nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+    
+    visibility: visible;
+}
+
+.right_nav_element{
+    margin-left: 15px;
+    
+    font-family: Roboto-Medium;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login_container{
+    display: flex;
+    align-items: center;
+}
+
+.login_container::before{
+    content: "";
+    height: 32px;
+    display: block;
+
+    position: relative;
+    float: left;
+    margin-right: 15px;
+    border-right: 2px solid white;
+}
+
+#burger{
+    filter: invert(99%) sepia(96%) saturate(13%) hue-rotate(211deg) brightness(104%) contrast(100%);
+    width: 26px;
+    height: 26px;
+    display: none;
+    cursor: pointer;
+}
+
+.title_container{
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.content_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.content_container > h2{
+    margin-bottom: 20px;
+}
+
+.table_sort *{
+    color: white;
+}
+
+.delete_note, .close_note{
+    cursor: pointer;
+}
+
+.table_sort {
+	width: 100%;
+	border: none;
+	margin-bottom: 20px;
+    border-spacing: 0px;
+}
+.table_sort thead th {
+	font-weight: bold;
+	text-align: center;
+	border: none;
+	padding: 10px 15px;
+	background: #2c3338;
+    color: white;
+	font-size: 14px;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+    font-family: Roboto-Medium;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+.table_sort tbody td {
+	text-align: center;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	padding: 10px 15px;
+	font-size: 10px;
+	vertical-align: top;
+    background-color: #646970;
+    font-family: Roboto-Light;
+    font-size: 14px;
+}
+
+.breakable{
+    word-break: break-all;
+}
+
+.table_sort thead tr th:first-child, .table_sort tbody tr td:first-child {
+	border-left: none;
+}
+.table_sort thead tr th:last-child, .table_sort tbody tr td:last-child {
+	border-right: none;
+}
+
+.open_user{
+    cursor: pointer;
+}
+
+.asc::after{
+    content: "▼";
+}
+
+.desc::after{
+	content: "▲"
+}
+
+.load_more{
+    align-self: center;
+    padding: 5px 15px;
+    color: white;
+    font-size: 14px;
+    font-family: Roboto-Light;
+    background-color: #646970;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.user_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.back{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) /* and (min-width: 600px)*/{ 
+    h1{
+        font-size: 44px;
+    }
+
+    .main_title .features .reviews{
+        width: 100%;
+    }
+
+    .main{
+        width: 85%;
+    }
+
+    .footer, .header_nav{
+        width: 80%;
+    }
+
+    #burger{
+        display: none;
+    }
+}
+
+@media (max-width: 800px) /* and (min-width: 600px)*/{ 
+    .features_container, .reviews_container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .features_element, .reviews_element{
+        margin-bottom: 25px;
+        width: 95%;
+    }
+
+    .menu__btn {
+        display: flex;
+    }
+
+    .header_nav{
+        position: relative;
+    }
+
+    .white_theme .right_nav{
+        background-color: white !important;
+        border: 1px solid grey;
+        padding: 5px 10px;
+    }
+
+    .white_theme .right_nav_element:hover{
+        background-color: #f6f7f7 !important;
+    }
+
+    .right_nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        position: absolute;
+
+        top: 15px;
+        right: 0px;
+
+        background-color: #2c3338;
+        border-radius: 5px;
+
+        display: none;
+    }
+
+    .right_nav > .right_nav_element{
+        width: 100%;
+        margin-left: 0px;
+        
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        margin: 2px 0;
+    }
+
+    .right_nav_element > a{
+        
+        padding: 5px 10px;
+    }
+
+    .right_nav > .right_nav_element:hover{
+        background-color: #646970;;
+    }
+
+    .login_container{
+        margin-left: 0px;
+    }
+
+    .login_container::before{
+        border-right: none;
+        margin-right: 0px;
+        height: auto;
+    }
+
+    #burger{
+        display: inline;
+    }
+}
+
+@media (max-width: 600px){ 
+    h1{
+        font-size: 32px;
+    }
+
+    h2{
+        font-size: 18px;
+    }
+
+    h3{
+        font-size: 12px;
+    }
+}

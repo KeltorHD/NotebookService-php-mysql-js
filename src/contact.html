@@ -1,0 +1,241 @@
+<?php
+include("common.php");
+include("check.php");
+
+session_start();
+
+if(is_auth()){
+    header("Location: ./app.html"); 
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Записная книжка</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="/css/main.css" type="text/css" rel="stylesheet">
+        <link href="/css/font.css" type="text/css" rel="stylesheet">
+        <link href="/css/modal.css" type="text/css" rel="stylesheet">
+
+	    <script src="js/jquery.min.js"></script>
+    </head>
+    <body <?php echo ((get_session_value("form_type") != "") ? "class='hidden'" : "") ?> 
+        <?php if(isset($_COOKIE['theme'])){
+            if ($_COOKIE['theme'] == "white_theme"){
+                echo "class='white_theme'";
+            }
+        } ?>>
+
+        <div class="main header_nav">
+
+            <div class="left_icon">
+                <a href="/">Записная книжка</a>
+            </div>
+
+            <div class="right_nav">
+
+                <div class="right_nav_element"><a href="/contact.html">Контакты</a></div>
+                <div class="right_nav_element"><a href="/help.html">Помощь</a></div>
+                <div class="right_nav_element login_container"><a href="" id="login-button">Войти</a></div>
+                <div class="right_nav_element"><a href="" class="register-button">Зарегистрироваться</a></div>
+
+            </div>
+
+            <svg id="burger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <defs><style>.cls-1{fill:none;}</style></defs>
+                <title/>
+                <g data-name="Layer 2" id="Layer_2">
+                    <path d="M28,10H4A1,1,0,0,1,4,8H28a1,1,0,0,1,0,2Z"/>
+                    <path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
+                    <path d="M28,24H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
+                </g>
+                <g id="frame">
+                    <rect class="cls-1" height="32" width="32"/>
+                </g>
+            </svg>
+
+        </div>
+
+        
+        <!-- Модальное окно авторизации-->
+        <div class='modal-login modal <?php echo (get_session_value('form_type') == 'login' ? 'modal_active' : '') ?>' id='modal-1'>
+            <div class='modal__content'>
+                <button class='modal__close-button close'><img src='./images/close.svg' width='12' alt=''></button>
+                <!-- Контент модального окна -->
+                <h3>Авторизация</h3>
+                <?php echo (isset_error('auth_form') == true ? select_error('auth_form') : '') ?>
+                <form action='authorize.php' method='post' class='log_form'> 
+                    <div class='auth_form'>
+
+                        <div class="form_container">
+
+                            <div class='form_item'>
+
+                                <span>Логин</span>
+
+                                <input required type='text' name='user_login' maxlength='30'
+                                value='<?php echo select_value('auth_form', 'user_login') ?>'>
+                                
+                            </div>
+                            
+                            <div class='form_item'>
+                                
+                                <span>Пароль</span>
+    
+                                <input required type='password' name='user_pass' maxlength='30'
+                                value='<?php echo select_value('auth_form', 'user_pass') ?>'
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class='result_login'>
+                        </div>
+                        
+                        <div class='buttons_auth'>
+                            <button type='submit' name='login' id='login_btn'>Авторизация</button>
+                            <h4 class='to_another_form'>Регистрация</h4>
+                            <h4 class='to_restore_form'>Восстановить</h4>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Модальное окно регистрации-->
+        <div class="modal-register modal <?php echo (get_session_value("form_type") == "register" ? "modal_active" : "")?>" id="modal-2">
+            <div class="modal__content">
+                <button class="modal__close-button close"><img src="./images/close.svg" width="12" alt=""></button>
+                <!-- Контент модального окна -->
+                <h3>Регистрация</h3>
+                <?php echo (isset_error("register_form") == true ? select_error("register_form") : "") ?>
+                <form action="register.php" method="post" class="log_form" enctype="multipart/form-data"> 
+                    <div class="auth_form">
+
+                        <div class="form_container">
+
+                            <div class="form_item">
+                                <span>Логин</span><input required type="text" name="user_login" maxlength="30"
+                                value="<?php echo select_value("register_form", "user_login") ?>">
+                            </div>
+                            
+                            <div class="form_item">
+                                <span>Пароль</span><input required type="password" name="user_pass" maxlength="30"
+                                value="<?php echo select_value("register_form", "user_pass") ?>">
+                            </div>
+
+                            <div class="form_item">
+                                <span>Повтор пароля</span><input required type="password" name="user_pass2" maxlength="30"
+                                value="<?php echo select_value("register_form", "user_pass2") ?>">
+                            </div>
+
+                            <div class="form_item">
+                                <span>Почта</span><input required type="email" name="user_email" maxlength="150"
+                                value="<?php echo select_value("register_form", "user_email") ?>">
+                            </div>
+
+                            <div class="form_item">
+                                <span>Имя</span><input required type="text" name="user_firstName" maxlength="30"
+                                value="<?php echo select_value("register_form", "user_firstName") ?>">
+                            </div>
+
+                            <div class="form_item">
+                                <span>Фамилия</span><input required type="test" name="user_lastName" maxlength="30"
+                                value="<?php echo select_value("register_form", "user_lastName") ?>">
+                            </div>
+
+                            <div class="form_item">
+                                <input required id="user_photo" type="file" name="user_photo" accept="image/jpeg,image/png" style="display: none">
+                                <span>Фото</span>
+                                <label id="label_photo" for="user_photo">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 17">
+                                        <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
+                                    </svg>
+                                    <span id="load_file_span">Загрузить...</span></label>
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <div class="result_registration">
+                        </div>
+                        
+                        <div class="buttons_auth">
+                            <button type="submit" name="register" id="register_btn">Зарегистрироваться</button>
+                            <h4 class="to_another_form">Войти</h4>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Модальное окно восстановления пароля-->
+        <div class="modal-restore modal <?php echo (get_session_value("form_type") == "restore" ? "modal_active" : "")?> " id="modal-3">
+            <div class="modal__content">
+                <button class="modal__close-button close"><img src="./images/close.svg" width="12" alt=""></button>
+                <!-- Контент модального окна -->
+                <h3>Восстановление пароля</h3>
+                <?php echo (isset_error("restore_form") == true ? select_error("restore_form") : "") ?>
+                <form action="restore.php" method="post" class="log_form"> 
+                    <div class="auth_form">
+
+                        <div class="form_container">
+
+                            <div class="form_item">
+                                <span>Логин</span><input required type="text" name="user_login" maxlength="30"
+                                value="<?php echo select_value("restore_form", "user_login")?>">
+                            </div>
+
+                        </div>
+
+                        <div class="result_restore">
+                        </div>
+                        
+                        <div class="buttons_auth">
+                            <button type="submit" name="restore" id="restore_btn">Восстановить</button>
+                            <h4 class="to_login_form">Войти</h4>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="main main_title">
+
+            <h1>Контакты</h1>
+
+            <h2>Нужна помощь с Записной книжкой? 
+                Посетите нашу страницу справки, чтобы получить ответы на часто задаваемые вопросы. 
+                Если вы не можете найти там ответ, напишите нам по адресу support@example.com, 
+                и один из наших инженеров свяжется с вами.</h2>
+
+        </div>
+
+        <div class="main footer">
+            
+            <div class="left_footer">
+                <div class="left_footer_element"><a href="/contact.html">Контакты</a></div>
+                <div class="left_footer_element"><a href="/help.html">Помощь</a></div>
+            </div>
+
+            <div class="right_footer">
+                © Keltor, 2021
+            </div>
+
+        </div>
+
+        
+	    <script src="js/modal.js"></script>
+	    <script src="js/nav.js"></script>
+
+    </body>
+</html>
+
+
+<?php clear_session(); ?>
